@@ -59,7 +59,11 @@ class MainController extends Controller
         $onesubject = SubjectModel::find($id);
         $answer->subject_model_id=$onesubject->id;
         $answer->que = $request->input('question');
-        $answer->ans = $request->input('answer');        
+        if (empty($_POST['asnwer'])) {
+            $answer->ans = " ";
+        }
+        else{
+        $answer->ans = $request->input('answer');  }      
 
         $answer->save();
         return redirect()->route('subject-one',$id);
