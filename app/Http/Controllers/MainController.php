@@ -95,7 +95,7 @@ class MainController extends Controller
 
         $connection = mysqli_connect('127.0.0.1', 'root', '', 'Subjects');
 
-        $sql = mysqli_query($connection,'SELECT * FROM `answer_models` WHERE `subject_model_id` = $id ORDER BY RAND() LIMIT 1;');
+        $sql = mysqli_query($connection,"SELECT * FROM `answer_models` WHERE `subject_model_id` = $id ORDER BY RAND() LIMIT 1;");
 
         while($row = $sql->fetch_assoc()){
             $ques=$row['que'];
