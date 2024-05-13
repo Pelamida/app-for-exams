@@ -4,16 +4,16 @@
 
 <div class="alert alert-secondary">
 <h1>{{$data->sub}}</h1>
-<a href="{{ route('subject-update', $data->id ) }}"><button type="button"class="btn btn-primary">Редактировать</button></a>
-<a href="{{ route('subject-delete', $data->id ) }}"><button type="button"class="btn btn-danger">Удалить</button></a>
+<a href="{{ route('subject-update', $data->id ) }}"><button type="button"class="btn btn-outline-primary btn-sm">Редактировать</button></a>
+<a href="{{ route('subject-delete', $data->id ) }}"><button type="button"class="btn btn-outline-danger btn-sm">Удалить</button></a>
 </div>
 
 @foreach($datans as $answer)
 <div class="alert alert-warning">
     <h5>{{$answer->que}}</h5>
     <p>{{$answer->ans}}</p>
-    <a href="{{ route('answer-update', $answer->id ) }}"><button type="button"class="btn btn-primary">Редактировать</button></a>
-    <a href="{{ route('answer-delete', $answer->id ) }}"><button type="button"class="btn btn-danger">Удалить</button></a>
+    <a href="{{ route('answer-update', $answer->id ) }}"><button type="button"class="btn btn-outline-primary btn-sm">Редактировать</button></a>
+    <a href="{{ route('answer-delete', $answer->id ) }}"><button type="button"class="btn btn-outline-danger btn-sm">Удалить</button></a>
 </div>
 @endforeach
 
