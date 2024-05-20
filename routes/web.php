@@ -30,3 +30,4 @@ Route::get('/subject/{id}/deleteans', [MainController::class, 'deleteAnswer'])->
 
 Route::get('/tests', [MainController::class, 'tests'])->name('tests');
 Route::get('/tests/{id}', [MainController::class, 'testOneSubject'])->name('test-one');
+Route::get('/tests/{id}/answer', [MainController::class, 'testOneSubjectAnswer'])->name('test-one-answer');
