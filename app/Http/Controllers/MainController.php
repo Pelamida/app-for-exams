@@ -54,19 +54,34 @@ class MainController extends Controller
     }
 
     public function subjectOne_check($id, Request $request){
+        function uploadImage($image){
+            $name = $image['name'];
+            $tmp_name = $image['tmp_name'];
+            move_uploaded_file($tmp_name,"storage/".$name);
+        }
+
+
+        $valid = $request->validate([
+            'question'=> 'required',
+        ]);  
         
         $answer = new AnswerModel();
         $onesubject = SubjectModel::find($id);
         $answer->subject_model_id=$onesubject->id;
         $answer->que = $request->input('question');
-        if (empty($_POST['asnwer'])) {
-            $answer->ans = " ";
+        if (!(empty($_POST['answer']))) {
+            $answer->ans = $request->input('answer');
         }
-        else{
-        $answer->ans = $request->input('answer');  }      
+        else {$answer->ans = " ";}
+
+        if (!(empty($_FILES['image']))) {
+            uploadImage($_FILES['image']);
+            $answer->file = $_FILES['image']['name'];
+        }
 
         $answer->save();
         return redirect()->route('subject-one',$id);
+        
     }
 
     public function updateAnswer($id){
@@ -104,9 +119,17 @@ class MainController extends Controller
         while($row = $sql->fetch_assoc()){
             $ques=$row['que'];
             $answ=$row['ans'];
+            $pict = $row['file'];
+            $ansid = $row['id'];
         }
         
-        return view('one-test', ['data'=>$onesubject], ['datans'=>$answ, 'dataque'=>$ques]);
+        return view('one-test', ['data'=>$onesubject], ['ansid'=>$ansid,'datans'=>$answ, 'dataque'=>$ques, 'datapict'=>$pict]);
+    }
+
+    public function testOneSubjectAnswer($id){
+        $oneans = AnswerModel::find($id);
+        $onesubject = SubjectModel::find($oneans->subject_model_id);
+        return view('one-test-answer',['ansid'=>$id, 'data'=>$onesubject, 'datans'=>$oneans->ans, 'dataque'=>$oneans->que, 'datapict'=>$oneans->file]);
     }
 
 }
