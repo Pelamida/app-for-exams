@@ -13,8 +13,7 @@
 
 <div class="alert alert-warning">
     <h5>{{$dataque}}</h5>
-    <button onclick="(document.getElementById('cl1').innerHTML = '<p>{{$datans}}</p>')" class="btn btn-light">Показать ответ</button>
-    <div id="cl1"></div>
+    <a href="{{ route('test-one-answer', $ansid )}}"><button class="btn btn-light">Показать ответ</button></a>
           
 </div>
 
