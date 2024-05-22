@@ -132,4 +132,16 @@ class MainController extends Controller
         return view('one-test-answer',['ansid'=>$id, 'data'=>$onesubject, 'datans'=>$oneans->ans, 'dataque'=>$oneans->que, 'datapict'=>$oneans->file]);
     }
 
+    public function parser_check($id,Request $request){
+       
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_FILES['pdfFile'])) {
+            $file = $_FILES['pdfFile'];
+
+            return view('upload',['file'=>$file, 'data'=>$id]);  
+        }
+        else {
+            echo "<p>Файл не был загружен через форму.</p>";
+        }
+    
+    }
 }
