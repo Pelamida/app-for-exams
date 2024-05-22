@@ -40,7 +40,8 @@
 <body>
     <div class="alert alert-info">
         <span class="fs-4">Загрузите PDF файл с билетами</span>
-        <form action="upload.php" method="post" enctype="multipart/form-data">
+        <form action="{{route('parser-check', $data->id)}}" method="post" enctype="multipart/form-data">
+            @csrf
             <input type="file" name="pdfFile" accept=".pdf" required>
             <button type="submit" class="btn btn-success">Загрузить и обработать</button>
         </form>
